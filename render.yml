@@ -3,5 +3,5 @@ services:
     name: YuksekLisansPhyton-8
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn -b 0.0.0.0:8080 app:app"
+    startCommand: "gunicorn -b 0.0.0.0:${PORT} -w 4 --timeout 120 app:app"
     port: 8080
