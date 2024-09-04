@@ -6,7 +6,7 @@ import io
 
 app = Flask(__name__)
 
-model_path = r'C:\Users\ahmee\OneDrive\Masaüstü\YL\Pressure_Injury\kod\saved_models/DenseNet121_pressure_injury_classifier.keras'
+model_path = 'saved_models/DenseNet121_pressure_injury_classifier.keras'
 model = tf.keras.models.load_model(model_path)
 
 classes = ['Evre 1', 'Evre 2', 'Evre 3', 'Evre 4']
@@ -43,4 +43,4 @@ def predict():
         return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=8080)
