@@ -1,7 +1,11 @@
+version: '3.8'
+
 services:
-  - type: web
-    name: YuksekLisansPhyton-8
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn -b 0.0.0.0:${PORT} -w 4 --timeout 120 app:app"
-    port: 8080
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
