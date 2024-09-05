@@ -13,8 +13,11 @@ model_path = os.path.join(os.path.dirname(__file__), 'saved_models/DenseNet121_p
 # Load the model
 model = None
 try:
-    model = tf.keras.models.load_model(model_path)
-    print("Model loaded successfully.")
+    if os.path.isfile(model_path):
+        model = tf.keras.models.load_model(model_path)
+        print("Model loaded successfully.")
+    else:
+        print(f"Model file not found at {model_path}")
 except Exception as e:
     print(f"Error loading model: {e}")
 
