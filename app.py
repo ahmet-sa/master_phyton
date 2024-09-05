@@ -3,12 +3,15 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing import image
 import numpy as np
 import io
+import os
 
 app = Flask(__name__)
 
 # Path to your saved model
-model_path = 'saved_models/DenseNet121_pressure_injury_classifier.keras'
+model_path = os.path.join(os.path.dirname(__file__), 'saved_models/DenseNet121_pressure_injury_classifier.keras')
+
 # Load the model
+model = None
 try:
     model = tf.keras.models.load_model(model_path)
     print("Model loaded successfully.")
@@ -20,6 +23,9 @@ classes = ['Evre 1', 'Evre 2', 'Evre 3', 'Evre 4']
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    if model is None:
+        return jsonify({'error': 'Model not loaded'}), 500
+
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
 
