@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Path to your saved model
 model_path = 'saved_models/DenseNet121_pressure_injury_classifier.keras'
-
+print("Model loaded successfully.")
 # Load the model
 try:
     model = tf.keras.models.load_model(model_path)
