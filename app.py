@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 # Path to your saved model
-model_path = os.path.join(os.path.dirname(__file__), 'saved_models/DenseNet121_pressure_injury_classifier.keras')
+model_path = os.path.join(os.path.dirname(__file__), 'saved_models/best_model.h5')
 
 # Load the model
 model = None
